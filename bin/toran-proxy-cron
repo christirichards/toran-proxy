@@ -1,0 +1,21 @@
+#!/bin/sh
+
+start() {
+    DATE="$(date)"
+    echo ""
+    echo "=========="
+    echo "$DATE - Starting Synchronization..."
+
+    # Launch Cron
+    sudo -u www-data bash -c "cd /var/www && php bin/cron -v"
+
+    DATE="$(date)"
+    echo "$DATE - Synchronization Finished"
+    echo "=========="
+
+    exit 0
+}
+
+case $1 in
+  start) "$1" ;;
+esac
